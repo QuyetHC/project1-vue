@@ -1,18 +1,41 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
-  </div>
+  <v-app id="home">
+    <v-navigation-drawer v-model="drawer" app>
+      <v-list>
+        <ul>
+          <li>
+            <router-link to="/employee" active-class="active" custom>
+              Employee
+            </router-link>
+          </li>
+          <li>
+            <router-link to="/department" active-class="active" custom>
+              Department
+            </router-link>
+          </li>
+        </ul>
+      </v-list>
+    </v-navigation-drawer>
+
+    <v-app-bar app>
+      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+
+      <v-toolbar-title>Project</v-toolbar-title>
+      <!-- <router-link v-if="auth" to="/login" v-on:click.native="logout()" replace
+        >LOGOUT</router-link
+      > -->
+    </v-app-bar>
+
+    <v-main>
+      <v-container> <router-view></router-view> </v-container>
+    </v-main>
+  </v-app>
 </template>
 
-<script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
-
-@Component({
-  components: {
-    HelloWorld,
-  },
-})
-export default class HomeView extends Vue {}
+<script>
+export default {
+  data: () => ({
+    drawer: null,
+  }),
+};
 </script>
