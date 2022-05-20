@@ -10,14 +10,15 @@
 </template>
 
 <script>
-
 export default {
-
   name: "App",
   data() {
     return {
-      
-      
+      authenticated: false,
+      mockAccount: {
+        username: "quyet",
+        password: "pass",
+      },
     };
   },
   mounted() {

@@ -7,23 +7,17 @@ Vue.use(VueRouter);
 const routes: Array<RouteConfig> = [
   {
     path: "/",
-    redirect: "home",
-    name: "home",
     component: HomeView,
     children: [
       {
         path: "/home",
+        name: "home",
         component: () => import("../views/HomeView.vue"),
       },
       {
         path: "/employee",
         name: "employee",
         component: () => import("../views/EmployeeView.vue"),
-      },
-      {
-        path: "/department",
-        // name: "department",
-        component: () => import("../views/DepartmentView.vue"),
       }
     ],
   },

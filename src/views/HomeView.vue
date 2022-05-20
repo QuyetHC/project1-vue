@@ -4,13 +4,13 @@
       <v-list>
         <ul>
           <li>
-            <router-link to="/employee" active-class="active" custom>
-              Employee
+            <router-link to="/home" active-class="active" custom>
+              Home
             </router-link>
           </li>
           <li>
-            <router-link to="/department" active-class="active" custom>
-              Department
+            <router-link to="/employee" active-class="active" custom>
+              Employee
             </router-link>
           </li>
         </ul>

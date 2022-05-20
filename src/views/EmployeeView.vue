@@ -2,24 +2,38 @@
   <div class="employee">
     <v-autocomplete
       v-model="search"
-      :items="item()"
+      :items="Department.map((x) => x.name)"
       item-text="Description"
       item-value="API"
       label="Public APIs"
       placeholder="search Department.."
       prepend-icon="mdi-database-search"
     ></v-autocomplete>
-    <div>
-      <ul>
-        <li v-for="(item, index) in searchR()" :key="index">
-          {{ item.name }}
-          <div class="searchR" v-for="(it, ind) in item.employee" :key="ind">
-            {{ it.id }} - {{ it.name }} - {{ it.age }} - {{ it.salary }}
-          </div>
-        </li>
-      </ul>
-      
-    </div>
+    <table class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Salary</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(item, index) in searchR()" :key="index">
+          <td>{{ item.name }}</td>
+          <td>{{ item.age }}</td>
+          <td>{{ item.salary }}</td>
+          <td>{{ item.departmentId }}</td>
+          <td>
+                    <span class="icon">
+                      <i  @click="onEditSubmit(product.id)" class="fa fa-check"></i>
+                    </span>
+                  </td>
+        </tr>
+      </tbody>
+    </table>
+    <v-data-table
+    :items-per-page="5"
+  ></v-data-table>
   </div>
 </template>
 
@@ -32,23 +46,35 @@ import { depart } from "@/models/Department";
 export default class EmployeeView extends Vue {
   Employee = dc;
   Department = depart;
-  search = '';
-  @Watch("search")
+  search = "";
   item() {
     return this.Department.map((depart) => depart.name);
   }
   @Watch("search")
   searchR() {
     if (this.search) {
-      return this.Department.filter((item) => {
-        return item.name == this.search;
+      const depart = this.Department.find(
+        (item) => item.name == this.search
+      ).id;
+      return this.Employee.filter((item) => {
+        return item.departmentId == depart;
       });
     } else {
-      return this.Department;
+      return this.Employee;
     }
   }
 }
 </script>
 
 <style scoped>
+table,
+td,
+th {
+  border: 1px solid;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
 </style>
