@@ -24,16 +24,12 @@
           <td>{{ item.salary }}</td>
           <td>{{ item.departmentId }}</td>
           <td>
-                    <span class="icon">
-                      <i  @click="onEditSubmit(product.id)" class="fa fa-check"></i>
-                    </span>
-                  </td>
+            <router-link class="btn btn-primary" v-bind:to="'employee/'+ item.id">Edit</router-link>
+          </td>
         </tr>
       </tbody>
     </table>
-    <v-data-table
-    :items-per-page="5"
-  ></v-data-table>
+    <v-data-table :items-per-page="5"></v-data-table>
   </div>
 </template>
 

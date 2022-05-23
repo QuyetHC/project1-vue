@@ -12,12 +12,17 @@ const routes: Array<RouteConfig> = [
       {
         path: "/home",
         name: "home",
-        component: () => import("../views/HomeView.vue"),
+        component: () => import("../views/HomePage.vue"),
       },
       {
         path: "/employee",
         name: "employee",
         component: () => import("../views/EmployeeView.vue"),
+      },
+      {
+        path: '/employee/:id',
+        name: 'Employee',
+        component: () => import("../views/DetailEmployee.vue")
       }
     ],
   },
