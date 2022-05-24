@@ -6,40 +6,45 @@
         <div class="card-body">
           <form class="form-inline">
             <div class="form-group">
-              <label>ID</label>
+              <label>ID: </label>
               <input
+                v-model="info.id"
                 type="text"
                 class="form-control ml-sm-2 mr-sm-4 my-2"
                 required
               />
             </div>
             <div class="form-group">
-              <label>Name</label>
+              <label>Name: </label>
               <input
+                v-model="info.name"
                 type="text"
                 class="form-control ml-sm-2 mr-sm-4 my-2"
                 required
               />
             </div>
             <div class="form-group">
-              <label>Age</label>
+              <label>Age: </label>
               <input
+                v-model="info.age"
                 type="text"
                 class="form-control ml-sm-2 mr-sm-4 my-2"
                 required
               />
             </div>
             <div class="form-group">
-              <label>Salary</label>
+              <label>Salary: </label>
               <input
+                v-model="info.salary"
                 type="text"
                 class="form-control ml-sm-2 mr-sm-4 my-2"
                 required
               />
             </div>
             <div class="form-group">
-              <label>Department</label>
+              <label>Department: </label>
               <input
+                v-model="info.departmentId"
                 type="text"
                 class="form-control ml-sm-2 mr-sm-4 my-2"
                 required
@@ -63,12 +68,13 @@ import router from "@/router";
 @Component
 export default class extends Vue {
   Employee = dc;
+  Eid = this.$route.params.id;
+  info = this.Employee.find((employee) => {
+    return employee.id == parseInt(this.Eid);
+  });
+
   mounted() {
-    for (let i = 0; i < this.Employee.length; i++) {
-      if ((this.Employee.length = 2)) {
-        console.log(2);
-      }
-    }
+    this.info;
   }
 }
 </script>
@@ -79,11 +85,7 @@ h3 {
   margin-top: 30px;
   margin-bottom: 20px;
 }
-.icon {
-  margin-right: 10px;
-  border-radius: 1px solid black;
-}
-.icon i {
-  cursor: pointer;
+.card {
+  display: flex;
 }
 </style>
