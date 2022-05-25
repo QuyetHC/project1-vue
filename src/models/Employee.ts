@@ -112,7 +112,14 @@ export const dc: Employee[] = [
     id: 15,
     name: "moc",
     age: 24,
-    salary: 712344,
+    salary: 71234,
     departmentId: 2,
+  },
+  {
+    id: 16,
+    name: "moc",
+    age: 24,
+    salary: 71234,
+    departmentId: 3,
   },
 ];

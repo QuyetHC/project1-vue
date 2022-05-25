@@ -7,39 +7,40 @@
           <form class="form-inline">
             <div class="form-group">
               <label>ID: </label>
-              <input
+              <v-text-field
                 v-model="info.id"
-                type="text"
                 class="form-control ml-sm-2 mr-sm-4 my-2"
                 required
-              />
+              ></v-text-field>
             </div>
             <div class="form-group">
               <label>Name: </label>
-              <input
+              <v-text-field
                 v-model="info.name"
-                type="text"
+                :counter="20"
+                :rules="nameRules"
                 class="form-control ml-sm-2 mr-sm-4 my-2"
+                label="Name"
                 required
-              />
+              ></v-text-field>
             </div>
             <div class="form-group">
               <label>Age: </label>
-              <input
+              <v-text-field
                 v-model="info.age"
-                type="text"
                 class="form-control ml-sm-2 mr-sm-4 my-2"
+                label="Age"
                 required
-              />
+              ></v-text-field>
             </div>
             <div class="form-group">
               <label>Salary: </label>
-              <input
+              <v-text-field
                 v-model="info.salary"
-                type="text"
                 class="form-control ml-sm-2 mr-sm-4 my-2"
+                label="Name"
                 required
-              />
+              ></v-text-field>
             </div>
             <div class="form-group">
               <label>Department: </label>
@@ -51,7 +52,7 @@
               />
             </div>
             <div class="ml-auto text-right">
-              <button type="submit" class="btn btn-primary my-2">Edit</button>
+              <v-btn @click="clickEdit(info)" depressed> Edit </v-btn>
             </div>
           </form>
         </div>
@@ -63,7 +64,6 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { dc } from "@/models/Employee";
-import router from "@/router";
 
 @Component
 export default class extends Vue {
@@ -76,6 +76,14 @@ export default class extends Vue {
   mounted() {
     this.info;
   }
+
+  clickEdit(itemSave) {
+    this.Employee.findIndex((e) => e.id === itemSave.id);
+  }
+  nameRules = [
+    (v) => !!v || "Name is required",
+    (v) => (v && v.length <= 30) || "Name must be less than 30 characters",
+  ];
 }
 </script>
 

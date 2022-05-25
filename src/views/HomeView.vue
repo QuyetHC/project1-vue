@@ -1,29 +1,31 @@
 <template>
   <v-app id="home">
     <v-navigation-drawer v-model="drawer" app>
-      <v-list>
-        <ul>
-          <li>
-            <router-link to="/home" active-class="active" custom>
-              Home
-            </router-link>
-          </li>
-          <li>
-            <router-link to="/employee" active-class="active" custom>
-              Employee
-            </router-link>
-          </li>
-        </ul>
-      </v-list>
+      <v-card class="mx-auto" max-width="500">
+        <v-list>
+          <v-list-item-group v-model="model">
+            <v-list-item
+              v-for="(item, i) in items"
+              :key="i"
+              router
+              :to="item.route"
+            >
+              <v-list-item-icon>
+                <v-icon v-text="item.icon"></v-icon>
+              </v-list-item-icon>
+              <v-list-item-content>
+                <v-list-item-title v-text="item.text"></v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list-item-group>
+        </v-list>
+      </v-card>
     </v-navigation-drawer>
 
     <v-app-bar app>
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
 
       <v-toolbar-title>Project</v-toolbar-title>
-      <!-- <router-link v-if="auth" to="/login" v-on:click.native="logout()" replace
-        >LOGOUT</router-link
-      > -->
     </v-app-bar>
 
     <v-main>
@@ -32,10 +34,35 @@
   </v-app>
 </template>
 
-<script>
-export default {
-  data: () => ({
-    drawer: null,
-  }),
-};
+<script lang="ts">
+import { Component, Vue } from "vue-property-decorator";
+
+@Component
+export default class extends Vue {
+  drawer = true;
+  items = [
+    {
+      icon: "fa-fort-awesome",
+      text: "Home",
+      route: "/home",
+    },
+    {
+      icon: "fa-elementor",
+      text: "Employee",
+      route: "/employee",
+    },
+    {
+      icon: "fa-arrow-right-from-bracket",
+      text: "logout",
+      route: "/login",
+    },
+  ];
+  model = 1;
+}
 </script>
+
+<style scoped>
+#id {
+  display: flex;
+}
+</style>

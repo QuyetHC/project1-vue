@@ -37,10 +37,10 @@ export default {
           this.$emit("auth", true);
           this.$router.replace({ name: "home" });
         } else {
-          console.log("The username or password is incorrect");
+          alert("The username or password is incorrect");
         }
       } else {
-        console.log("A username and password must be present");
+        alert("A username and password must be present");
       }
     },
   },
@@ -48,55 +48,56 @@ export default {
 </script>
 
 <style scoped>
-html, body{
-	width:100%;
-	height:100%;
-	margin:0px;
-	font-family: 'Work Sans', sans-serif;
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  font-family: "Work Sans", sans-serif;
 }
 
-body{
-		display: flex;
-		flex-direction:column;
-		justify-content:center;
-		color: #fff;
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #fff;
 }
 
-section{
-	background-color: rgba(0, 0, 0, 0.72);
-	width:25%;
-	min-height:25%;
-	display:flex;
-	flex-direction:column;
-	/*margin-left:auto;
+section {
+  background-color: rgba(0, 0, 0, 0.72);
+  width: 25%;
+  min-height: 25%;
+  display: flex;
+  flex-direction: column;
+  /*margin-left:auto;
 	margin-right:auto;*/
 }
 
 #login {
-  display:flex;
-	flex-direction:column;
-	padding: 15px; 
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
 }
 
-input{
-	height:35px;
-	padding: 5px 5px;
-	margin: 10px 0px;
-	background-color:#e0dada;
-	border:none;
+input {
+  height: 35px;
+  padding: 5px 5px;
+  margin: 10px 0px;
+  background-color: #e0dada;
+  border: none;
 }
-button{
-	height:40px;
-	padding: 5px 5px;
-	margin: 10px 0px;
-	font-weight:bold;
-	background-color:#be5256;
-	border:none;
-	color:#e0dada;
-	cursor:pointer;
-	font-size:16px;
+button {
+  height: 40px;
+  padding: 5px 5px;
+  margin: 10px 0px;
+  font-weight: bold;
+  background-color: #be5256;
+  border: none;
+  color: #e0dada;
+  cursor: pointer;
+  font-size: 16px;
 }
-button:hover{
-	background-color:#711f1b;
+button:hover {
+  background-color: #711f1b;
 }
 </style>

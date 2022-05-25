@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <v-main class="home">
-      <v-container>
+      <v-container class="home">
         <h3>Top 10 Người Lương Cao Nhất</h3>
         <v-row>
           <v-col v-for="(item, index) in orderedUsers()" :key="index" cols="3">
@@ -38,8 +36,6 @@
           </v-col>
         </v-row>
       </v-container>
-    </v-main>
-  </div>
 </template>
 
 <script lang="ts">
@@ -58,7 +54,7 @@ export default class extends Vue {
   TotalSalary() {
     let total = 0;
     let high = 0;
-    let higtDepartmentId = 0;
+    let highDepartmentId = 0;
     this.Department.forEach((department) => {
       const emp = this.Employee.filter(
         (employee) => employee.departmentId === department.id
@@ -68,18 +64,17 @@ export default class extends Vue {
       });
       if (total > high) {
         high = total;
-        higtDepartmentId = department.id;
+        highDepartmentId = department.id;
       }
     });
     return this.Employee.filter(
-      (employee) => employee.departmentId == higtDepartmentId
+      (employee) => employee.departmentId == highDepartmentId
     );
   }
 }
 </script>
 <style scoped>
 .home {
-  display: flex;
   text-align: center;
 }
 </style>

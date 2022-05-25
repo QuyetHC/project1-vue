@@ -20,10 +20,10 @@ const routes: Array<RouteConfig> = [
         component: () => import("../views/EmployeeView.vue"),
       },
       {
-        path: '/employee/:id',
-        name: 'Employee',
-        component: () => import("../views/DetailEmployee.vue")
-      }
+        path: "/employee/:id",
+        name: "Employee",
+        component: () => import("../views/DetailEmployee.vue"),
+      },
     ],
   },
   {
