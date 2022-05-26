@@ -1,13 +1,13 @@
 import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
-import HomeView from "../views/HomeView.vue";
+import LoginView from "../views/LoginView.vue";
 
 Vue.use(VueRouter);
 
 const routes: Array<RouteConfig> = [
   {
     path: "/",
-    component: HomeView,
+    component: () => import("../views/HomeView.vue"),
     children: [
       {
         path: "/home",
@@ -29,7 +29,7 @@ const routes: Array<RouteConfig> = [
   {
     path: "/login",
     name: "login",
-    component: () => import("../views/LoginView.vue"),
+    component: LoginView,
   },
 ];
 

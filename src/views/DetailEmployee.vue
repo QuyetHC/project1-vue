@@ -10,6 +10,7 @@
                 v-model="info.id"
                 class="form-control ml-sm-2 mr-sm-4 my-2"
                 label="ID"
+                disabled="false"
                 required
               ></v-text-field>
             </div>
@@ -40,13 +41,14 @@
               ></v-text-field>
             </div>
             <div class="form-group">
-              <v-text-field
+              <select
+                class="form-control"
                 v-model="info.departmentId"
-                type="text"
-                label="Department ID"
-                class="form-control ml-sm-2 mr-sm-4 my-2"
-                required
-              />
+              >
+                <option v-for="item in Employee" :value="item.departmentId" :key="item.departmentId">
+                  {{ item.departmentId }}
+                </option>
+              </select>
             </div>
             <div class="ml-auto text-right">
               <v-btn @click="clickEdit(info)" depressed> Edit </v-btn>
@@ -61,10 +63,12 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { dc } from "@/models/Employee";
+import { depart } from "@/models/Department";
 
 @Component
 export default class extends Vue {
   Employee = dc;
+  Department = depart;
   Eid = this.$route.params.id;
   info = this.Employee.find((employee) => {
     return employee.id == parseInt(this.Eid);
@@ -76,6 +80,7 @@ export default class extends Vue {
 
   clickEdit(itemSave) {
     this.Employee.findIndex((e) => e.id === itemSave.id);
+    window.location.replace;
   }
   nameRules = [
     (v) => !!v || "Name is required",

@@ -1,30 +1,46 @@
+
 <template>
-  <div class="login">
+  <v-form class="login" ref="form" v-model="valid" lazy-validation>
     <h1 id="login">Login</h1>
-    <input
-      type="text"
-      name="username"
+    <v-text-field
       v-model="input.username"
-      placeholder="Username"
-    />
-    <input
-      type="password"
-      name="password"
+      :counter="5"
+      :rules="nameRules"
+      label="Username"
+      name="username"
+      required
+    ></v-text-field>
+    <v-text-field
       v-model="input.password"
-      placeholder="Password"
-    />
-    <button type="button" v-on:click="login()">Login</button>
-  </div>
+      type="password"
+      :counter="4"
+      :rules="passRules"
+      label="Password"
+      required
+    ></v-text-field>
+    <v-btn class="mr-4" :disabled="!valid" @click="login()"> Login </v-btn>
+  </v-form>
 </template>
 
 <script>
 export default {
   data() {
     return {
+      valid: true,
       input: {
         username: "",
         password: "",
       },
+      nameRules: [
+        (v) => !!v || "Name is required",
+        (v) => (v && v.length >= 5) || "Name must be less than 5 characters",
+      ],
+      passRules: [
+        (v) => !!v || "Pass is required",
+        (v) =>
+          (v && v.length >= 4) ||
+          "Name must be less than 4 characters or number.",
+      ],
     };
   },
   methods: {
@@ -34,7 +50,8 @@ export default {
           this.input.username == this.$parent.mockAccount.username &&
           this.input.password == this.$parent.mockAccount.password
         ) {
-          this.$emit("auth", true);
+          this.$emit("auth", false);
+          this.$session.set("username", "quyet");
           this.$router.replace({ name: "home" });
         } else {
           alert("The username or password is incorrect");
@@ -48,56 +65,8 @@ export default {
 </script>
 
 <style scoped>
-html,
-body {
-  width: 100%;
-  height: 100%;
-  margin: 0px;
-  font-family: "Work Sans", sans-serif;
-}
-
-body {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  color: #fff;
-}
-
-section {
-  background-color: rgba(0, 0, 0, 0.72);
-  width: 25%;
-  min-height: 25%;
-  display: flex;
-  flex-direction: column;
-  /*margin-left:auto;
-	margin-right:auto;*/
-}
-
-#login {
-  display: flex;
-  flex-direction: column;
-  padding: 15px;
-}
-
-input {
-  height: 35px;
-  padding: 5px 5px;
-  margin: 10px 0px;
-  background-color: #e0dada;
-  border: none;
-}
-button {
-  height: 40px;
-  padding: 5px 5px;
-  margin: 10px 0px;
-  font-weight: bold;
-  background-color: #be5256;
-  border: none;
-  color: #e0dada;
-  cursor: pointer;
-  font-size: 16px;
-}
-button:hover {
-  background-color: #711f1b;
+.login {
+  text-align: center;
+  margin-top: 15%;
 }
 </style>
