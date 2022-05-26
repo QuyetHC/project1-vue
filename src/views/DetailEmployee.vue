@@ -6,15 +6,14 @@
         <div class="card-body">
           <form class="form-inline">
             <div class="form-group">
-              <label>ID: </label>
               <v-text-field
                 v-model="info.id"
                 class="form-control ml-sm-2 mr-sm-4 my-2"
+                label="ID"
                 required
               ></v-text-field>
             </div>
             <div class="form-group">
-              <label>Name: </label>
               <v-text-field
                 v-model="info.name"
                 :counter="20"
@@ -25,7 +24,6 @@
               ></v-text-field>
             </div>
             <div class="form-group">
-              <label>Age: </label>
               <v-text-field
                 v-model="info.age"
                 class="form-control ml-sm-2 mr-sm-4 my-2"
@@ -34,19 +32,18 @@
               ></v-text-field>
             </div>
             <div class="form-group">
-              <label>Salary: </label>
               <v-text-field
                 v-model="info.salary"
                 class="form-control ml-sm-2 mr-sm-4 my-2"
-                label="Name"
+                label="Salary"
                 required
               ></v-text-field>
             </div>
             <div class="form-group">
-              <label>Department: </label>
-              <input
+              <v-text-field
                 v-model="info.departmentId"
                 type="text"
+                label="Department ID"
                 class="form-control ml-sm-2 mr-sm-4 my-2"
                 required
               />
