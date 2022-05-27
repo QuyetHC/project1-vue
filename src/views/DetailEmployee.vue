@@ -41,14 +41,16 @@
               ></v-text-field>
             </div>
             <div class="form-group">
-              <select
+              <v-select
                 class="form-control"
                 v-model="info.departmentId"
+                :items="Department"
+                item-text="name"
+                item-value="id"
+                label="Department"
+                required
               >
-                <option v-for="item in Employee" :value="item.departmentId" :key="item.departmentId">
-                  {{ item.departmentId }}
-                </option>
-              </select>
+              </v-select>
             </div>
             <div class="ml-auto text-right">
               <v-btn @click="clickEdit(info)" depressed> Edit </v-btn>
@@ -79,8 +81,13 @@ export default class extends Vue {
   }
 
   clickEdit(itemSave) {
-    this.Employee.findIndex((e) => e.id === itemSave.id);
-    window.location.replace;
+    if (itemSave != null) {
+      this.Employee.findIndex((e) => e.id === itemSave.id);
+      this.$router.push({ name: "employee" });
+      alert("Update successfully");
+    } else {
+      alert("Update is not successful");
+    }
   }
   nameRules = [
     (v) => !!v || "Name is required",

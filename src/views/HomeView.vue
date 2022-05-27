@@ -17,6 +17,17 @@
                 <v-list-item-title v-text="item.text"></v-list-item-title>
               </v-list-item-content>
             </v-list-item>
+
+
+            <v-list-item @click="logout"
+            >
+              <v-list-item-icon>
+                <v-icon ></v-icon>
+              </v-list-item-icon>
+              <v-list-item-content>
+                <v-list-item-title >logout</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
           </v-list-item-group>
         </v-list>
       </v-card>
@@ -51,13 +62,16 @@ export default class extends Vue {
       text: "Employee",
       route: "/employee",
     },
-    {
-      icon: "fa-arrow-right-from-bracket",
-      text: "logout",
-      route: "/login",
-    },
   ];
   model = 1;
+
+
+
+
+  logout(){
+    sessionStorage.clear()
+    this.$router.push('/login')
+  }
 }
 </script>
 

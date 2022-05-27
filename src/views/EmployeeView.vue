@@ -6,7 +6,7 @@
         <v-spacer></v-spacer>
         <v-autocomplete
           v-model="search"
-          :items="Department.map((x) => x.name)"
+          :items="DepartMap"
           item-text="Description"
           item-value="API"
           label="Public APIs"
@@ -32,9 +32,10 @@ import { depart } from "@/models/Department";
 @Component
 export default class EmployeeView extends Vue {
   Employee = dc;
-  tempList = []
+  tempList = [];
   Department = depart;
   search = "";
+  DepartMap = depart.map((x) => x.name);
   headers = [
     { text: "ID", value: "id" },
     { text: "Name", value: "name" },

@@ -51,7 +51,7 @@ export default {
           this.input.password == this.$parent.mockAccount.password
         ) {
           this.$emit("auth", false);
-          this.$session.set("username", "quyet");
+          sessionStorage.setItem('username', this.username);
           this.$router.replace({ name: "home" });
         } else {
           alert("The username or password is incorrect");

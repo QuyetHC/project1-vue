@@ -2,7 +2,7 @@
   <v-container class="home d-lg-col-4 d-md-col-3 d-sm-col-2">
     <h3>Top 10 Người Lương Cao Nhất</h3>
     <v-row>
-      <v-col v-for="(item, index) in orderedUsers()" :key="index" cols="3">
+      <v-col v-for="(item, index) in top10" :key="index" cols="3">
         <v-card height="200">
           <div>ID: {{ item.id }}</div>
           <div>Name: {{ item.name }}</div>
@@ -21,12 +21,13 @@
     <br />
     <h3>Phòng Ban Có Tổng Lương Cao Nhất</h3>
     <v-row>
-      <v-col v-for="(item, index) in TotalSalary()" :key="index" cols="3">
+      <v-col v-for="(item, index) in tempEmployee" :key="index" cols="3">
         <v-card height="200">
           <div>ID: {{ item.id }}</div>
           <div>Name: {{ item.name }}</div>
           <div>Age: {{ item.age }}</div>
           <div>Salary: {{ item.salary }}</div>
+
           <div>
             <v-avatar color="indigo" size="100">
               <v-icon dark> mdi-account-circle </v-icon>
@@ -47,15 +48,21 @@ import { depart } from "@/models/Department";
 export default class extends Vue {
   Employee = dc;
   Department = depart;
+  tempEmployee = [];
+  top10 = [];
   orderedUsers() {
-    return this.Employee.sort((a, b) => b.salary - a.salary).slice(0, 10);
+    this.top10 = this.Employee.sort((a, b) => b.salary - a.salary).slice(0, 10);
   }
 
+  created() {
+    this.orderedUsers();
+    this.TotalSalary();
+  }
   TotalSalary() {
-    let total = 0;
     let high = 0;
-    let highDepartmentId = 0;
+    let highDepartmentId;
     this.Department.forEach((department) => {
+      let total = 0;
       const emp = this.Employee.filter(
         (employee) => employee.departmentId === department.id
       );
@@ -67,8 +74,8 @@ export default class extends Vue {
         highDepartmentId = department.id;
       }
     });
-    return this.Employee.filter(
-      (employee) => employee.departmentId == highDepartmentId
+    this.tempEmployee = this.Employee.filter(
+      (employee) => employee.departmentId === highDepartmentId
     );
   }
 }

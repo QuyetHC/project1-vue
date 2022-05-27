@@ -6,8 +6,18 @@ Vue.use(VueRouter);
 
 const routes: Array<RouteConfig> = [
   {
+    path: "/login",
+    name: "login",
+    component: LoginView,
+  },
+  {
     path: "/",
+    name: "home",
     component: () => import("../views/HomeView.vue"),
+    beforeEnter: (to, from, next) => {
+      if (sessionStorage.getItem("username") == null) next({ name: "login" });
+      else next();
+    },
     children: [
       {
         path: "/home",
@@ -25,11 +35,6 @@ const routes: Array<RouteConfig> = [
         component: () => import("../views/DetailEmployee.vue"),
       },
     ],
-  },
-  {
-    path: "/login",
-    name: "login",
-    component: LoginView,
   },
 ];
 
