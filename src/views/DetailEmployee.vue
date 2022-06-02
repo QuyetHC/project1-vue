@@ -67,18 +67,18 @@
 import { Component, Vue } from "vue-property-decorator";
 import { dc } from "@/models/Employee";
 import { depart } from "@/models/Department";
-import { action, observable } from "mobx";
+import { action, computed, observable } from "mobx";
 
 @Component
 export default class extends Vue {
-  @observable
   Employee = dc;
   Department = depart;
-  Eid = this.$route.params.id;
-  info = this.Employee.find((employee) => {
+  @observable Eid = this.$route.params.id;
+  @action info = this.Employee.find((employee) => {
     return employee.id == parseInt(this.Eid);
   });
 
+  @computed
   mounted() {
     this.info;
   }

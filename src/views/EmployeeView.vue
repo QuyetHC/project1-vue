@@ -32,11 +32,10 @@ import { observable, computed, action } from "mobx";
 
 @Component
 export default class EmployeeView extends Vue {
-  @observable
   Employee = dc;
-  tempList = [];
+  @observable tempList = [];
   Department = depart;
-  search = "";
+  @observable search = "";
   DepartMap = depart.map((x) => x.name);
   headers = [
     { text: "ID", value: "id" },
@@ -46,7 +45,7 @@ export default class EmployeeView extends Vue {
     { text: "Department", value: "departmentId" },
   ];
   
-  @action
+  @computed
   EmployeeDetail(emp: Employee) {
     this.$router.push("/employee/" + emp.id);
   }
@@ -56,7 +55,7 @@ export default class EmployeeView extends Vue {
     return this.Department.map((depart) => depart.name);
   }
 
-  @computed
+  @action
   @Watch("search")
   searchR() {
     if (this.search) {

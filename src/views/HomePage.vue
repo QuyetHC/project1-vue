@@ -1,10 +1,10 @@
 <template>
   <v-container class="home">
-    <v-col cols="12" lg="9" md="5" sm="3">
+    <v-col cols="12" lg="10" md="2" sm="3">
       <h3>Top 10 Người Lương Cao Nhất</h3>
       <v-row>
         <v-col v-for="(item, index) in top10" :key="index">
-          <v-card height="auto">
+          <v-card height="250" width="160">
             <div>ID: {{ item.id }}</div>
             <div>Name: {{ item.name }}</div>
             <div>Age: {{ item.age }}</div>
@@ -23,7 +23,7 @@
       <h3>Phòng Ban Có Tổng Lương Cao Nhất</h3>
       <v-row>
         <v-col v-for="(item, index) in tempEmployee" :key="index">
-          <v-card height="auto">
+          <v-card height="250" width="160">
             <div>ID: {{ item.id }}</div>
             <div>Name: {{ item.name }}</div>
             <div>Age: {{ item.age }}</div>
@@ -45,27 +45,27 @@
 import { Component, Vue } from "vue-property-decorator";
 import { dc } from "@/models/Employee";
 import { depart } from "@/models/Department";
-import { action, observable } from "mobx";
+import { action, observable, computed } from "mobx";
 
 @Component
 export default class extends Vue {
-  @observable
   Employee = dc;
   Department = depart;
-  tempEmployee = [];
-  top10 = [];
+  @observable tempEmployee = [];
+  @observable top10 = [];
 
-  @action
+  @computed
   orderedUsers() {
     this.top10 = this.Employee.sort((a, b) => b.salary - a.salary).slice(0, 10);
   }
 
+  @action
   created() {
     this.orderedUsers();
     this.TotalSalary();
   }
 
-  @action
+  @computed
   TotalSalary() {
     let high = 0;
     let highDepartmentId;
