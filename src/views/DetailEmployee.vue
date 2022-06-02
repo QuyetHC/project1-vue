@@ -67,9 +67,11 @@
 import { Component, Vue } from "vue-property-decorator";
 import { dc } from "@/models/Employee";
 import { depart } from "@/models/Department";
+import { action, observable } from "mobx";
 
 @Component
 export default class extends Vue {
+  @observable
   Employee = dc;
   Department = depart;
   Eid = this.$route.params.id;
@@ -77,10 +79,12 @@ export default class extends Vue {
     return employee.id == parseInt(this.Eid);
   });
 
+
   mounted() {
     this.info;
   }
 
+  @action
   clickEdit(itemSave) {
     if (itemSave != null) {
       this.Employee.findIndex((e) => e.id === itemSave.id);
@@ -90,12 +94,13 @@ export default class extends Vue {
       alert("Update is not successful");
     }
   }
+
   nameRules = [
     (v) => !!v || "Name is required",
     (v) => (v && v.length <= 30) || "Name must be less than 30 characters",
   ];
   ageRules = [
-    (v: any) => !!v || "Age is Required",
+    (v: any) => !!v || "Age is required",
     (v: any) => v > 20 || "Age must greater than 20",
   ];
 }

@@ -28,9 +28,11 @@
 import { Component, Vue, Watch } from "vue-property-decorator";
 import { dc, Employee } from "@/models/Employee";
 import { depart } from "@/models/Department";
+import { observable, computed, action } from "mobx";
 
 @Component
 export default class EmployeeView extends Vue {
+  @observable
   Employee = dc;
   tempList = [];
   Department = depart;
@@ -43,14 +45,18 @@ export default class EmployeeView extends Vue {
     { text: "Salary", value: "salary" },
     { text: "Department", value: "departmentId" },
   ];
-
+  
+  @action
   EmployeeDetail(emp: Employee) {
     this.$router.push("/employee/" + emp.id);
   }
-
+  
+  @observable
   item() {
     return this.Department.map((depart) => depart.name);
   }
+
+  @computed
   @Watch("search")
   searchR() {
     if (this.search) {
@@ -61,11 +67,6 @@ export default class EmployeeView extends Vue {
       this.tempList = this.Employee.filter((item) => {
         return item.departmentId === depart;
       });
-
-      /*
-      return this.Employee.filter((item) => {
-        return item.departmentId === depart;
-      });*/
     } else {
       this.tempList.length = 0;
       return this.Employee;

@@ -4,7 +4,7 @@
       <h3>Top 10 Người Lương Cao Nhất</h3>
       <v-row>
         <v-col v-for="(item, index) in top10" :key="index">
-          <v-card height="200">
+          <v-card height="auto">
             <div>ID: {{ item.id }}</div>
             <div>Name: {{ item.name }}</div>
             <div>Age: {{ item.age }}</div>
@@ -23,7 +23,7 @@
       <h3>Phòng Ban Có Tổng Lương Cao Nhất</h3>
       <v-row>
         <v-col v-for="(item, index) in tempEmployee" :key="index">
-          <v-card height="200">
+          <v-card height="auto">
             <div>ID: {{ item.id }}</div>
             <div>Name: {{ item.name }}</div>
             <div>Age: {{ item.age }}</div>
@@ -45,13 +45,17 @@
 import { Component, Vue } from "vue-property-decorator";
 import { dc } from "@/models/Employee";
 import { depart } from "@/models/Department";
+import { action, observable } from "mobx";
 
 @Component
 export default class extends Vue {
+  @observable
   Employee = dc;
   Department = depart;
   tempEmployee = [];
   top10 = [];
+
+  @action
   orderedUsers() {
     this.top10 = this.Employee.sort((a, b) => b.salary - a.salary).slice(0, 10);
   }
@@ -60,6 +64,8 @@ export default class extends Vue {
     this.orderedUsers();
     this.TotalSalary();
   }
+
+  @action
   TotalSalary() {
     let high = 0;
     let highDepartmentId;
@@ -84,6 +90,6 @@ export default class extends Vue {
 </script>
 <style scoped>
 .home {
-  /* text-align: center; */
+  text-align: center;
 }
 </style>
