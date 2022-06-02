@@ -79,14 +79,13 @@ export default class extends Vue {
     return employee.id == parseInt(this.Eid);
   });
 
-
   mounted() {
     this.info;
   }
 
   @action
   clickEdit(itemSave) {
-    if (itemSave != null) {
+    if (this.info.age >= 20 && itemSave != null) {
       this.Employee.findIndex((e) => e.id === itemSave.id);
       this.$router.push({ name: "employee" });
       alert("Update successfully");
@@ -100,8 +99,8 @@ export default class extends Vue {
     (v) => (v && v.length <= 30) || "Name must be less than 30 characters",
   ];
   ageRules = [
-    (v: any) => !!v || "Age is required",
-    (v: any) => v > 20 || "Age must greater than 20",
+    (v) => !!v || "Age is required",
+    (v) => v >= 20 || "Age must greater than 20",
   ];
 }
 </script>

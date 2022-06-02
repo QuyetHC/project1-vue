@@ -36,9 +36,14 @@
 
       <v-toolbar-title>Project</v-toolbar-title>
     </v-app-bar>
-        <v-main>
-          <v-container> <router-view></router-view> </v-container>
-        </v-main>
+    <v-main>
+      <v-container> <router-view></router-view> </v-container>
+    </v-main>
+    <v-footer padless>
+      <v-col class="text-center" cols="12">
+        {{ new Date().getFullYear() }} — <strong>Vuetify</strong>
+      </v-col>
+    </v-footer>
   </v-app>
 </template>
 
@@ -70,7 +75,7 @@ export default class extends Vue {
 </script>
 
 <style scoped>
-#id {
+#home {
   display: flex;
   text-align: center;
 }

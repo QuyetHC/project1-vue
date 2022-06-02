@@ -1,6 +1,6 @@
 <template>
   <v-container class="home">
-    <v-col cols="12" lg="10" md="8" sm="8">
+    <v-col cols="12" lg="9" md="5" sm="3">
       <h3>Top 10 Người Lương Cao Nhất</h3>
       <v-row>
         <v-col v-for="(item, index) in top10" :key="index">
