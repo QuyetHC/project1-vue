@@ -37,7 +37,11 @@
       <v-toolbar-title>Project</v-toolbar-title>
     </v-app-bar>
     <v-main>
-      <v-container> <router-view></router-view> </v-container>
+      <v-row>
+        <v-col cols="12" lg="10" md="8" sm="6">
+          <v-container> <router-view></router-view> </v-container>
+        </v-col>
+      </v-row>
     </v-main>
     <v-footer padless>
       <v-col class="text-center" cols="12">

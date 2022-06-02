@@ -9,7 +9,7 @@ export default {
   name: "App",
   data() {
     return {
-      authenticated: false,
+      auth: false,
       mockAccount: {
         username: "admin",
         password: "admin",
