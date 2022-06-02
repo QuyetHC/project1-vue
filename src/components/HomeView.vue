@@ -18,14 +18,12 @@
               </v-list-item-content>
             </v-list-item>
 
-
-            <v-list-item @click="logout"
-            >
+            <v-list-item @click="logout">
               <v-list-item-icon>
-                <v-icon ></v-icon>
+                <v-icon></v-icon>
               </v-list-item-icon>
               <v-list-item-content>
-                <v-list-item-title >logout</v-list-item-title>
+                <v-list-item-title>logout</v-list-item-title>
               </v-list-item-content>
             </v-list-item>
           </v-list-item-group>
@@ -38,10 +36,9 @@
 
       <v-toolbar-title>Project</v-toolbar-title>
     </v-app-bar>
-
-    <v-main>
-      <v-container> <router-view></router-view> </v-container>
-    </v-main>
+        <v-main>
+          <v-container> <router-view></router-view> </v-container>
+        </v-main>
   </v-app>
 </template>
 
@@ -65,12 +62,9 @@ export default class extends Vue {
   ];
   model = 1;
 
-
-
-
-  logout(){
-    sessionStorage.clear()
-    this.$router.push('/login')
+  logout() {
+    sessionStorage.clear();
+    this.$router.push("/login");
   }
 }
 </script>
@@ -78,5 +72,6 @@ export default class extends Vue {
 <style scoped>
 #id {
   display: flex;
+  text-align: center;
 }
 </style>

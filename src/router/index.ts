@@ -13,7 +13,7 @@ const routes: Array<RouteConfig> = [
   {
     path: "/",
     name: "home",
-    component: () => import("../views/HomeView.vue"),
+    component: () => import("../components/HomeView.vue"),
     beforeEnter: (to, from, next) => {
       if (sessionStorage.getItem("username") == null) next({ name: "login" });
       else next();

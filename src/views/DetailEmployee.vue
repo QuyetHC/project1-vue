@@ -27,6 +27,7 @@
             <div class="form-group">
               <v-text-field
                 v-model="info.age"
+                :rules="ageRules"
                 class="form-control ml-sm-2 mr-sm-4 my-2"
                 label="Age"
                 required
@@ -92,6 +93,10 @@ export default class extends Vue {
   nameRules = [
     (v) => !!v || "Name is required",
     (v) => (v && v.length <= 30) || "Name must be less than 30 characters",
+  ];
+  ageRules = [
+    (v: any) => !!v || "Age is Required",
+    (v: any) => v > 20 || "Age must greater than 20",
   ];
 }
 </script>

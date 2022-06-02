@@ -1,41 +1,43 @@
 <template>
-  <v-container class="home d-lg-col-4 d-md-col-3 d-sm-col-2">
-    <h3>Top 10 Người Lương Cao Nhất</h3>
-    <v-row>
-      <v-col v-for="(item, index) in top10" :key="index" cols="3">
-        <v-card height="200">
-          <div>ID: {{ item.id }}</div>
-          <div>Name: {{ item.name }}</div>
-          <div>Age: {{ item.age }}</div>
-          <div>Salary: {{ item.salary }}</div>
-          <div>
-            <v-avatar color="indigo" size="100">
-              <v-icon dark> mdi-account-circle </v-icon>
-            </v-avatar>
-          </div>
-        </v-card>
-      </v-col>
-    </v-row>
-    <br />
-    <br />
-    <br />
-    <h3>Phòng Ban Có Tổng Lương Cao Nhất</h3>
-    <v-row>
-      <v-col v-for="(item, index) in tempEmployee" :key="index" cols="3">
-        <v-card height="200">
-          <div>ID: {{ item.id }}</div>
-          <div>Name: {{ item.name }}</div>
-          <div>Age: {{ item.age }}</div>
-          <div>Salary: {{ item.salary }}</div>
+  <v-container class="home">
+    <v-col cols="12" lg="10" md="8" sm="8">
+      <h3>Top 10 Người Lương Cao Nhất</h3>
+      <v-row>
+        <v-col v-for="(item, index) in top10" :key="index">
+          <v-card height="200">
+            <div>ID: {{ item.id }}</div>
+            <div>Name: {{ item.name }}</div>
+            <div>Age: {{ item.age }}</div>
+            <div>Salary: {{ item.salary }}</div>
+            <div>
+              <v-avatar color="indigo" size="100">
+                <v-icon dark> mdi-account-circle </v-icon>
+              </v-avatar>
+            </div>
+          </v-card>
+        </v-col>
+      </v-row>
+      <br />
+      <br />
+      <br />
+      <h3>Phòng Ban Có Tổng Lương Cao Nhất</h3>
+      <v-row>
+        <v-col v-for="(item, index) in tempEmployee" :key="index">
+          <v-card height="200">
+            <div>ID: {{ item.id }}</div>
+            <div>Name: {{ item.name }}</div>
+            <div>Age: {{ item.age }}</div>
+            <div>Salary: {{ item.salary }}</div>
 
-          <div>
-            <v-avatar color="indigo" size="100">
-              <v-icon dark> mdi-account-circle </v-icon>
-            </v-avatar>
-          </div>
-        </v-card>
-      </v-col>
-    </v-row>
+            <div>
+              <v-avatar color="indigo" size="100">
+                <v-icon dark> mdi-account-circle </v-icon>
+              </v-avatar>
+            </div>
+          </v-card>
+        </v-col>
+      </v-row>
+    </v-col>
   </v-container>
 </template>
 
@@ -82,6 +84,6 @@ export default class extends Vue {
 </script>
 <style scoped>
 .home {
-  text-align: center;
+  /* text-align: center; */
 }
 </style>
